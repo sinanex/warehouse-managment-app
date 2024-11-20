@@ -251,9 +251,7 @@ class _EditPageState extends State<EditPage> {
     );
 
     editData(widget.index, edit);
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const ListPage()),
+    Navigator.pop(context
     );
   }
 }

@@ -19,7 +19,7 @@ class ShippingModel {
   @HiveField(7)
   String? date;
   @HiveField(8)
-  String? time;
+  String? catogary;
   @HiveField(9)
   String? image;
   
@@ -32,7 +32,7 @@ class ShippingModel {
     required this.name,
     required this.price,
     required this.date,
-    required this.time,
+    required this.catogary,
     required this.image,
   });
 }

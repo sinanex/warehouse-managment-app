@@ -1,8 +1,17 @@
+
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:warehouse/databases/functions/function.dart';
 
-class Dashbord extends StatelessWidget {
+class Dashbord extends StatefulWidget {
+
+ Dashbord({super.key});
+
+  @override
+  State<Dashbord> createState() => _DashbordState();
+}
+
+class _DashbordState extends State<Dashbord> {
   final List<Color> colorList = [
     Colors.blue,
     Colors.orange,
@@ -20,11 +29,10 @@ class Dashbord extends StatelessWidget {
    final speaker = 'Speakers';
    final watch =  'Smart Watches';
 
- Dashbord({super.key});
-
   @override
   Widget build(BuildContext context) {
 return Scaffold(
+  backgroundColor: Colors.white,
   body: ValueListenableBuilder(valueListenable: stockmodelnotifer, builder: (context, value, child) {
    final lap =  value.where((product)=>product.catogary == laptop);
    final phone =  value.where((product)=>product.catogary == mobile);

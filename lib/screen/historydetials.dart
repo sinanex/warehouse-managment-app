@@ -109,8 +109,8 @@ class Historydetials extends StatelessWidget {
             const SizedBox(
               height: 5,
             ),
-            const Text(
-              'Catogary : headphone',
+             Text(
+              'Catogary : $catogary',
               style: TextStyle(
                 fontSize: 18,
                 fontWeight: FontWeight.bold,

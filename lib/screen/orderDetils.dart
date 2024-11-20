@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:intl/intl.dart';
+import 'package:lottie/lottie.dart';
 import 'package:warehouse/databases/functions/function.dart';
 import 'package:warehouse/databases/model/model.dart';
 import 'package:warehouse/databases/model/shipping.dart';
@@ -9,19 +10,18 @@ import 'package:warehouse/screen/profile.dart';
 
 String? year = DateFormat('yyyy-MM-dd').format(DateTime.now());
 
-// ignore: must_be_immutable
 class OrderdetilsPage extends StatelessWidget {
   String? name;
   String? email;
   String? location;
   String? shpping;
-  String? quantity;
+  String? shippingQuantity;
   String? price;
   String? pname;
   String? image;
   String? discount;
   int? index;
-  String? totalQuantity;
+  String? itemquantity;
   String? desc;
   String? color;
   String? catogary;
@@ -29,13 +29,13 @@ class OrderdetilsPage extends StatelessWidget {
 
   OrderdetilsPage({
     super.key,
-    required this.totalQuantity,
+    required this.itemquantity,
     required this.index,
     required this.name,
     required this.email,
     required this.location,
     required this.shpping,
-    required this.quantity,
+    required this.shippingQuantity,
     required this.price,
     required this.pname,
     required this.image,
@@ -254,7 +254,7 @@ class OrderdetilsPage extends StatelessWidget {
                             fontSize: 20),
                       ),
                       Text(
-                        "${int.parse(price!) * int.parse(quantity!)}",
+                        "${int.parse(price!) * int.parse(shippingQuantity!)}",
                         style: style(),
                       ),
                     ],
@@ -277,7 +277,7 @@ class OrderdetilsPage extends StatelessWidget {
                   width: 100,
                 ),
                 Text(
-                  "${int.parse(price!) * int.parse(quantity!) + 500 + 2000 + 1000 - int.parse(discount!)}",
+                  "${int.parse(price!) * int.parse(shippingQuantity!) + 500 + 2000 + 1000 - int.parse(discount!)}",
                   style: style(),
                 ),
               ],
@@ -289,7 +289,6 @@ class OrderdetilsPage extends StatelessWidget {
               child: GestureDetector(
                 onTap: () {
                   placeorderBtn(context);
-                  stockUpdate();
                 },
                 child: Container(
                   width: 250,
@@ -321,20 +320,68 @@ class OrderdetilsPage extends StatelessWidget {
         email: email,
         location: location,
         address: shpping,
-        quantity: quantity,
+        quantity: shippingQuantity,
         name: pname,
         price: price,
         date: year,
-        time: year,
+        catogary: catogary,
         image: image);
-    addShipping(shippingData);
 
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) =>  NavigationPage()));
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          backgroundColor: Colors.white,
+          title: Container(
+            width: 300,
+            height: 350,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text(
+                  "order confirmed",
+                  style: style(),
+                ),
+                Lottie.network(
+                    'https://lottie.host/e15ddbc0-0d8e-42a8-af3e-bf92cef47e92/OGmPNMfgRR.json',
+                    width: 200,
+                    repeat: false),
+                Padding(
+                  padding: const EdgeInsets.only(top: 20),
+                  child: SizedBox(
+                    height: 60,
+                    width: 200,
+                    child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.black,
+                          foregroundColor: Colors.white,
+                        ),
+                        onPressed: () {
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => NavigationPage(
+                                        initialState: 0,
+                                      )));
+                          stockUpdate();
+                          addShipping(shippingData);
+                        },
+                        child: Text(
+                          "Go to Home",
+                          style: style(),
+                        )),
+                  ),
+                )
+              ],
+            ),
+          ),
+        );
+      },
+    );
   }
 
   void stockUpdate() {
-    final qty = int.parse(totalQuantity!) - int.parse(quantity!);
+    final qty = int.parse(itemquantity!) - int.parse(shippingQuantity!);
     final update = StockModel(
         name: name,
         color: color,
@@ -344,6 +391,11 @@ class OrderdetilsPage extends StatelessWidget {
         price: price,
         description: desc,
         image: image);
+
+    editData(index!, update);
+    if (qty <= 0) {
+      deleteData(index!);
+    }
   }
 }
 

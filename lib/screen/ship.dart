@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:warehouse/screen/orderDetils.dart';
 import 'package:warehouse/screen/profile.dart';
 import 'package:warehouse/widgets/widget.dart';
@@ -10,9 +11,9 @@ class Shppingpage extends StatelessWidget {
   String? pname;
   dynamic image;
   String? price;
-  String? quantity;
+  String? itemquantity;
   String? date;
-  String?  color;
+  String? color;
   String? catogary;
   String? decs;
   int index;
@@ -25,7 +26,7 @@ class Shppingpage extends StatelessWidget {
     required this.color,
     required this.date,
     required this.decs,
-    required this.quantity,
+    required this.itemquantity,
     required this.index,
   });
   final TextEditingController _cnameCtrl = TextEditingController();
@@ -130,7 +131,7 @@ class Shppingpage extends StatelessWidget {
     final email = _emailCtrl.text.trim();
     final location = _location.text.trim();
     final address = _shipping.text.trim();
-    final quantity = _quantity.text.trim();
+    final shippingQuantity = _quantity.text.trim();
     final discount = _discount.text.trim();
 
     if (name.isNotEmpty &&
@@ -138,27 +139,65 @@ class Shppingpage extends StatelessWidget {
         location.isNotEmpty &&
         address.isNotEmpty &&
         discount.isNotEmpty &&
-        quantity.isNotEmpty) {
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-              builder: (context) => OrderdetilsPage(
-                catogary: catogary,
-                color: color,
-                date: date,
-                desc: decs,
-                totalQuantity: quantity,
-                index: index,
-                    name: name,
-                    email: email,
-                    location: location,
-                    shpping: address,
-                    quantity: quantity,
-                    price: price,
-                    pname: pname,
-                    image: image,
-                    discount: discount,
-                  )));
+        shippingQuantity.isNotEmpty) {
+      int sq = int.parse(shippingQuantity);
+      int iq = int.parse(itemquantity!);
+
+      if (sq > iq) {
+        showDialog(
+          context: context,
+          builder: (context) {
+            return AlertDialog(
+              backgroundColor: Colors.white,
+              title: SizedBox(
+                width: 300,
+                height: 300,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Text(
+                      "Low Stock Alert",
+                      style: style(),
+                    ),
+                    Lottie.network(
+                        'https://lottie.host/11e7975e-3fc6-4e83-a35d-5c64a5064194/YLijZ9ErDp.json',
+                        width: 150,
+                        repeat: false),
+                    Text(
+                      "only $iq item left",
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey,
+                      ),
+                    )
+                  ],
+                ),
+              ),
+            );
+          },
+        );
+      } else {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => OrderdetilsPage(
+                      catogary: catogary,
+                      color: color,
+                      date: date,
+                      desc: decs,
+                      itemquantity: itemquantity,
+                      index: index,
+                      name: name,
+                      email: email,
+                      location: location,
+                      shpping: address,
+                      shippingQuantity: shippingQuantity,
+                      price: price,
+                      pname: pname,
+                      image: image,
+                      discount: discount,
+                    )));
+      }
     } else {
       ScaffoldMessenger.of(context)
           .showSnackBar(const SnackBar(content: Text("fill all the feild")));

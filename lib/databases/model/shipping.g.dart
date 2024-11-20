@@ -25,7 +25,7 @@ class ShippingModelAdapter extends TypeAdapter<ShippingModel> {
       name: fields[5] as String?,
       price: fields[6] as String?,
       date: fields[7] as String?,
-      time: fields[8] as String?,
+      catogary: fields[8] as String?,
       image: fields[9] as String?,
     );
   }
@@ -51,7 +51,7 @@ class ShippingModelAdapter extends TypeAdapter<ShippingModel> {
       ..writeByte(7)
       ..write(obj.date)
       ..writeByte(8)
-      ..write(obj.time)
+      ..write(obj.catogary)
       ..writeByte(9)
       ..write(obj.image);
   }

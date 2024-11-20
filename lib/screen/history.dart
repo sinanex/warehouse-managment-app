@@ -28,7 +28,7 @@ Widget build(BuildContext context) {
           final data = value[index];
           return ListTile(
             onTap: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context)=>Historydetials(name: data.customername, pname: data.name, catogary: data.name, date: data.date, price: data.price, quantity: data.quantity, address: data.address, image: data.image)));
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>Historydetials(name: data.customername, pname: data.name, catogary: data.catogary, date: data.date, price: data.price, quantity: data.quantity, address: data.address, image: data.image)));
             },
             title: Text(data.name!,style: const TextStyle(
               fontWeight: FontWeight.bold,

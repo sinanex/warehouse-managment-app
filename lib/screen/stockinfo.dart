@@ -141,7 +141,7 @@ class StockDetails extends StatelessWidget {
                                       date: date,
                                       decs: decs,
                                       index: index,
-                                      quantity: quantity,
+                                      itemquantity: quantity,
                                     )));
                       },
                       style: ElevatedButton.styleFrom(
