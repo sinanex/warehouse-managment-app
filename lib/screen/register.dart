@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:warehouse/databases/functions/function.dart';
-import 'package:warehouse/databases/model/userdata.dart';
-import 'package:warehouse/screen/bottomNavigation.dart';
-import 'package:warehouse/screen/login.dart';
-import 'package:warehouse/screen/profile.dart';
-import 'package:warehouse/widgets/widget.dart';
+import 'package:storeit/databases/functions/function.dart';
+import 'package:storeit/databases/model/userdata.dart';
+import 'package:storeit/screen/bottomNavigation.dart';
+import 'package:storeit/screen/login.dart';
+import 'package:storeit/screen/profile.dart';
+import 'package:storeit/widgets/widget.dart';
+
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});

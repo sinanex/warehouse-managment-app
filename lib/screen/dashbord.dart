@@ -1,7 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
-import 'package:warehouse/databases/functions/function.dart';
+import 'package:storeit/databases/functions/function.dart';
 
 class Dashbord extends StatefulWidget {
 

@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
-import 'package:warehouse/databases/functions/function.dart';
-import 'package:warehouse/databases/model/model.dart';
-import 'package:warehouse/databases/model/shipping.dart';
-import 'package:warehouse/screen/bottomNavigation.dart';
-import 'package:warehouse/screen/profile.dart';
+import 'package:storeit/databases/functions/function.dart';
+import 'package:storeit/databases/model/model.dart';
+import 'package:storeit/databases/model/shipping.dart';
+import 'package:storeit/screen/bottomNavigation.dart';
+import 'package:storeit/screen/homepage.dart';
+import 'package:storeit/screen/profile.dart';
 
 String? year = DateFormat('yyyy-MM-dd').format(DateTime.now());
 
@@ -342,10 +343,8 @@ class OrderdetilsPage extends StatelessWidget {
                   "order confirmed",
                   style: style(),
                 ),
-                Lottie.network(
-                    'https://lottie.host/e15ddbc0-0d8e-42a8-af3e-bf92cef47e92/OGmPNMfgRR.json',
-                    width: 200,
-                    repeat: false),
+                Lottie.asset('assets/animations/true.json',
+                    width: 200, repeat: false),
                 Padding(
                   padding: const EdgeInsets.only(top: 20),
                   child: SizedBox(
@@ -357,12 +356,14 @@ class OrderdetilsPage extends StatelessWidget {
                           foregroundColor: Colors.white,
                         ),
                         onPressed: () {
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => NavigationPage(
-                                        initialState: 0,
-                                      )));
+                          Navigator.pushAndRemoveUntil(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => NavigationPage(
+                                      initialState: 0,
+                                    )),
+                            (route) => false,
+                          );
                           stockUpdate();
                           addShipping(shippingData);
                         },

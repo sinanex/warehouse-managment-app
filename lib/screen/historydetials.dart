@@ -1,8 +1,8 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:warehouse/screen/homepage.dart';
-import 'package:warehouse/screen/profile.dart';
+import 'package:storeit/screen/homepage.dart';
+import 'package:storeit/screen/profile.dart';
 
 // ignore: must_be_immutable
 class Historydetials extends StatelessWidget {

@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:iconsax/iconsax.dart';
-import 'package:warehouse/screen/add.dart';
-import 'package:warehouse/screen/dashbord.dart';
-import 'package:warehouse/screen/homepage.dart';
-import 'package:warehouse/screen/profile.dart';
+import 'package:storeit/screen/add.dart';
+import 'package:storeit/screen/dashbord.dart';
+import 'package:storeit/screen/homepage.dart';
+import 'package:storeit/screen/profile.dart';
+
 
 class NavigationPage extends StatefulWidget {
   final int initialState;

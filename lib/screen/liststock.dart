@@ -1,10 +1,10 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:warehouse/databases/functions/function.dart';
-import 'package:warehouse/databases/model/model.dart';
-import 'package:warehouse/screen/profile.dart';
-import 'package:warehouse/screen/stockinfo.dart';
+import 'package:storeit/databases/functions/function.dart';
+import 'package:storeit/databases/model/model.dart';
+import 'package:storeit/screen/profile.dart';
+import 'package:storeit/screen/stockinfo.dart';
 int stockLength =0;
 class ListPage extends StatefulWidget {
   const ListPage({super.key});
@@ -23,8 +23,15 @@ class _ListPageState extends State<ListPage> {
             stockData.name!.toLowerCase().contains(search.toLowerCase()))
         .toList();
   }
-
+var a='';
   @override
+  void initState(){
+    super.initState();
+    getData().then((_){
+     getData();
+     searchUpdate();
+    });
+  }
   Widget build(BuildContext context) {
     getData(); 
 

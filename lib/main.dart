@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:warehouse/databases/model/model.dart';
-import 'package:warehouse/databases/model/shipping.dart';
-import 'package:warehouse/databases/model/userdata.dart';
-import 'package:warehouse/screen/splash.dart';
+import 'package:storeit/databases/model/model.dart';
+import 'package:storeit/databases/model/shipping.dart';
+import 'package:storeit/databases/model/userdata.dart';
+import 'package:storeit/screen/splash.dart';
+
 
 Future<void> main() async
 {

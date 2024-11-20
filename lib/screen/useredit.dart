@@ -2,10 +2,9 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:warehouse/databases/functions/function.dart';
-import 'package:warehouse/databases/model/userdata.dart';
-import 'package:warehouse/widgets/widget.dart';
-
+import 'package:storeit/databases/functions/function.dart';
+import 'package:storeit/databases/model/userdata.dart';
+import 'package:storeit/widgets/widget.dart';
 class EditUserPage extends StatefulWidget {
   String? name;
   String? email;

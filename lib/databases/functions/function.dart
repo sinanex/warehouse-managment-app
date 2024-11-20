@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:warehouse/databases/model/model.dart';
-import 'package:warehouse/databases/model/shipping.dart';
-import 'package:warehouse/databases/model/userdata.dart';
+import 'package:storeit/databases/model/model.dart';
+import 'package:storeit/databases/model/shipping.dart';
+import 'package:storeit/databases/model/userdata.dart';
 
 ValueNotifier<List<StockModel>> stockmodelnotifer = ValueNotifier([]);
 ValueNotifier<List<ShippingModel>> shippingmodelNotifeir = ValueNotifier([]);

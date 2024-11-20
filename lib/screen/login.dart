@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:warehouse/screen/bottomNavigation.dart';
-import 'package:warehouse/screen/register.dart';
-import 'package:warehouse/widgets/widget.dart';
+import 'package:storeit/screen/bottomNavigation.dart';
+import 'package:storeit/screen/register.dart';
+import 'package:storeit/widgets/widget.dart';
+
 
 class LoginPage extends StatefulWidget {
  const LoginPage({super.key});

@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:warehouse/databases/functions/function.dart';
-import 'package:warehouse/screen/historydetials.dart';
-import 'package:warehouse/screen/profile.dart';
+import 'package:storeit/databases/functions/function.dart';
+import 'package:storeit/screen/historydetials.dart';
+import 'package:storeit/screen/profile.dart';
 
 class ShippingHistory extends StatelessWidget {
   const ShippingHistory({super.key});

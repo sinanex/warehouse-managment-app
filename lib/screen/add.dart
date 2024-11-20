@@ -3,12 +3,11 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:iconsax/iconsax.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:warehouse/databases/functions/function.dart';
-import 'package:warehouse/databases/model/model.dart';
-import 'package:warehouse/screen/bottomNavigation.dart';
-import 'package:warehouse/screen/liststock.dart';
-import 'package:warehouse/screen/profile.dart';
-import 'package:warehouse/widgets/widget.dart';
+import 'package:storeit/databases/functions/function.dart';
+import 'package:storeit/databases/model/model.dart';
+import 'package:storeit/screen/bottomNavigation.dart';
+import 'package:storeit/screen/profile.dart';
+import 'package:storeit/widgets/widget.dart';
 
 
 class AddstockPage extends StatefulWidget {

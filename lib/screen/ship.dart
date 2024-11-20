@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:warehouse/screen/orderDetils.dart';
-import 'package:warehouse/screen/profile.dart';
-import 'package:warehouse/widgets/widget.dart';
+import 'package:storeit/screen/orderDetils.dart';
+import 'package:storeit/screen/profile.dart';
+import 'package:storeit/widgets/widget.dart';
 
 // ignore: must_be_immutable
 class Shppingpage extends StatelessWidget {
@@ -120,6 +120,7 @@ class Shppingpage extends StatelessWidget {
                 ),
               ),
             ),
+            SizedBox(height: 50,),
           ],
         ),
       ),
@@ -150,7 +151,7 @@ class Shppingpage extends StatelessWidget {
             return AlertDialog(
               backgroundColor: Colors.white,
               title: SizedBox(
-                width: 300,
+                width: 350,
                 height: 300,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -159,17 +160,23 @@ class Shppingpage extends StatelessWidget {
                       "Low Stock Alert",
                       style: style(),
                     ),
-                    Lottie.network(
-                        'https://lottie.host/11e7975e-3fc6-4e83-a35d-5c64a5064194/YLijZ9ErDp.json',
-                        width: 150,
-                        repeat: false),
+                   Lottie.asset('assets/animations/alert.json',width: 150,repeat: true),
                     Text(
                       "only $iq item left",
                       style: const TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Colors.grey,
                       ),
-                    )
+                    ),
+                    SizedBox(height: 10,),
+                    ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black,
+                        foregroundColor: Colors.white,
+                      ),
+                      onPressed: (){
+                        Navigator.pop(context);
+                      }, child: Text("Back",style: style(),)),
                   ],
                 ),
               ),

@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:warehouse/databases/functions/function.dart';
-import 'package:warehouse/screen/edit.dart';
-import 'package:warehouse/screen/ship.dart';
+import 'package:storeit/databases/functions/function.dart';
+import 'package:storeit/screen/edit.dart';
+import 'package:storeit/screen/ship.dart';
 
 String? formattedDate = DateFormat('yyyy-MM-dd').format(DateTime.now());
 

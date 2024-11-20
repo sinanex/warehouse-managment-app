@@ -1,10 +1,12 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:warehouse/screen/bottomNavigation.dart';
-import 'package:warehouse/screen/login.dart';
-import 'package:warehouse/screen/profile.dart';
+import 'package:storeit/screen/bottomNavigation.dart';
+import 'package:storeit/screen/login.dart';
+import 'package:storeit/screen/profile.dart';
+
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -88,6 +90,7 @@ class _SplashScreenState extends State<SplashScreen> {
             const SizedBox(
               height: 20,
             ),
+            Lottie.asset('assets/animations/loadingan.json',)
           ],
         ),
       ),

@@ -1,6 +1,6 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:warehouse/databases/functions/function.dart';
+import 'package:storeit/databases/functions/function.dart';
 
 class BarChartExample extends StatelessWidget {
   @override

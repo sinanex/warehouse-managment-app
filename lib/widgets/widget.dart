@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:warehouse/screen/profile.dart';
+import 'package:storeit/screen/profile.dart';
 
 Widget imageContainer({
   required String name,

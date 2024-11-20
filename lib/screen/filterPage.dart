@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:warehouse/databases/functions/function.dart';
-import 'package:warehouse/screen/profile.dart';
-import 'package:warehouse/screen/stockinfo.dart';
+import 'package:storeit/databases/functions/function.dart';
+import 'package:storeit/screen/profile.dart';
+import 'package:storeit/screen/stockinfo.dart';
 
 // ignore: must_be_immutable
 class FilterPage extends StatelessWidget {

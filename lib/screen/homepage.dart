@@ -1,18 +1,28 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:warehouse/databases/functions/function.dart';
-import 'package:warehouse/databases/model/userdata.dart';
-import 'package:warehouse/screen/dashbord.dart';
-import 'package:warehouse/screen/filterPage.dart';
-import 'package:warehouse/screen/history.dart';
-import 'package:warehouse/screen/liststock.dart';
-import 'package:warehouse/screen/profile.dart';
-import 'package:warehouse/widgets/widget.dart';
+import 'package:storeit/databases/functions/function.dart';
+import 'package:storeit/databases/model/userdata.dart';
+import 'package:storeit/screen/dashbord.dart';
+import 'package:storeit/screen/filterPage.dart';
+import 'package:storeit/screen/history.dart';
+import 'package:storeit/screen/liststock.dart';
+import 'package:storeit/screen/profile.dart';
+import 'package:storeit/widgets/widget.dart';
 
-class Homepage extends StatelessWidget {
+class Homepage extends StatefulWidget {
   const Homepage({super.key});
+
+  @override
+  State<Homepage> createState() => _HomepageState();
+}
+class _HomepageState extends State<Homepage> {
+  int a=0;
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
   @override
   Widget build(BuildContext context) {
     final box = Hive.box<UserData>('profileBox');
@@ -23,6 +33,7 @@ class Homepage extends StatelessWidget {
           child: ValueListenableBuilder(
         valueListenable: stockmodelnotifer,
         builder: (context, value, child) {
+          a=value.length;
           return Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -203,7 +214,7 @@ class Homepage extends StatelessWidget {
                               ),
                             ),
                             Text(
-                              "${value.length} Packages",
+                              "${a} Packages",
                               style: TextStyle(
                                 color: Color.fromARGB(255, 0, 0, 0),
                                 fontWeight: FontWeight.w900,
