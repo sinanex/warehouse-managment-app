@@ -118,8 +118,8 @@ class _LoginPageState extends State<LoginPage> {
             ),
             const SizedBox(height: 30,),
             Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(width: 80,),
                 const Text("don't have an account?  "),
                 GestureDetector(
                   onTap: () {
@@ -130,7 +130,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),),
                 )
               ],
-            )
+            ),
             ],
           ),
         ),

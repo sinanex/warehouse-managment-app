@@ -54,7 +54,6 @@ class ProfilePage extends StatelessWidget {
               Padding(
                 padding: const EdgeInsets.all(12.0),
                 child: Card(
-                  elevation: 8,
                   color: Colors.white,
                   child: Container(
                     width: double.infinity,
@@ -92,13 +91,14 @@ class ProfilePage extends StatelessWidget {
                 child: Column(
                   children: [
                     Card(
+                      color: Colors.white,
                       child: ListTile(
                         onTap: () {
                           Navigator.push(
                               context,
                               MaterialPageRoute(
                                   builder: (context) => EditUserPage(
-                                    image: data.image,
+                                      image: data.image,
                                       name: data.name,
                                       email: data.email,
                                       password: data.password)));
@@ -108,6 +108,7 @@ class ProfilePage extends StatelessWidget {
                       ),
                     ),
                     Card(
+                      color: Colors.white,
                       child: ListTile(
                         onTap: () {
                           Navigator.push(
@@ -121,6 +122,7 @@ class ProfilePage extends StatelessWidget {
                       ),
                     ),
                     Card(
+                      color: Colors.white,
                       child: ListTile(
                         onTap: () {
                           clearDataBtn(context);
@@ -129,34 +131,19 @@ class ProfilePage extends StatelessWidget {
                         trailing: const Icon(Iconsax.arrow_right),
                       ),
                     ),
+                    Card(
+                      color: Colors.white,
+                      child: ListTile(
+                        onTap: () {
+                          signOutBtn(context);
+                        },
+                        title: const Text("logout "),
+                        trailing: const Icon(Iconsax.logout_1),
+                      ),
+                    ),
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 20,
-              ),
-              Center(
-                child: TextButton(
-                    onPressed: () {
-                      Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const LoginPage()));
-                    },
-                    child: GestureDetector(
-                      onTap: () {
-                        signOutBtn(context);
-                      },
-                      child: const Text(
-                        "sign out",
-                        style: TextStyle(
-                          color: Colors.red,
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                        ),
-                      ),
-                    )),
-              )
             ],
           );
         },
@@ -170,6 +157,7 @@ class ProfilePage extends StatelessWidget {
       context: context,
       builder: (context) {
         return AlertDialog(
+          backgroundColor: Colors.white,
           title: SizedBox(
               height: 120,
               child: Column(
@@ -232,6 +220,7 @@ class ProfilePage extends StatelessWidget {
         context: context,
         builder: (context) {
           return AlertDialog(
+              backgroundColor: Colors.white,
               title: SizedBox(
                   height: 120,
                   child: Column(
@@ -268,7 +257,7 @@ class ProfilePage extends StatelessWidget {
                                       context,
                                       MaterialPageRoute(
                                           builder: (context) =>
-                                              NavigationPage()));
+                                              const NavigationPage()));
                                 },
                                 child: const Text(
                                   "clear data",

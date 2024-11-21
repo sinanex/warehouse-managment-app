@@ -1,9 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:lottie/lottie.dart';
 import 'package:storeit/databases/functions/function.dart';
 import 'package:storeit/databases/model/model.dart';
-import 'package:storeit/screen/profile.dart';
 import 'package:storeit/screen/stockinfo.dart';
 int stockLength =0;
 class ListPage extends StatefulWidget {
@@ -78,7 +78,7 @@ var a='';
 
           if (displayList.isEmpty) {
             return Center(
-              child: Text("No data",style: style(),),
+             child: Lottie.asset('assets/animations/noitem.json',repeat: false,width: 250),
             );
           }
 
@@ -121,5 +121,3 @@ var a='';
     );
   }
 }
-
-

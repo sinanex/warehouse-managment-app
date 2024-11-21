@@ -71,6 +71,7 @@ final shipData = shipping.get('ship');
 Future<void> clearData() async {
   final dataBase = await Hive.openBox<StockModel>('data');
   await dataBase.clear();
+  getData();
 }
 
 Future<void> shippingDataClear() async {

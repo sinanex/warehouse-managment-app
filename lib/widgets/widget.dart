@@ -28,10 +28,11 @@ Widget imageContainer({
 }
 
 Widget contextfeild(
-    {required String hindtext, TextEditingController? controllertext}) {
+    {required String hindtext, TextEditingController? controllertext,  TextInputType? type, }) {
   return Padding(
     padding: const EdgeInsets.all(10.0),
     child: TextField(
+      keyboardType: type,
       controller: controllertext,
       decoration: InputDecoration(
         border: const OutlineInputBorder(),

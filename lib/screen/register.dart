@@ -145,10 +145,8 @@ class _RegisterPageState extends State<RegisterPage> {
                 height: 30,
               ),
               Row(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const SizedBox(
-                    width: 80,
-                  ),
                   const Text("Already  have an account?  "),
                   GestureDetector(
                     onTap: () {
@@ -200,7 +198,7 @@ class _RegisterPageState extends State<RegisterPage> {
       saveProfile(userdata);
       pref.setBool(logkey, true);
       Navigator.pushReplacement(context,
-          MaterialPageRoute(builder: (context) => NavigationPage(initialState: 0,)));
+          MaterialPageRoute(builder: (context) => const NavigationPage(initialState: 0,)));
     }
   }
 }

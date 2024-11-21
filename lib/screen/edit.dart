@@ -5,6 +5,8 @@ import 'package:iconsax/iconsax.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:storeit/databases/functions/function.dart';
 import 'package:storeit/databases/model/model.dart';
+import 'package:storeit/screen/bottomNavigation.dart';
+import 'package:storeit/screen/liststock.dart';
 import 'package:storeit/widgets/widget.dart';
 
 class EditPage extends StatefulWidget {
@@ -250,7 +252,6 @@ class _EditPageState extends State<EditPage> {
     );
 
     editData(widget.index, edit);
-    Navigator.pop(context
-    );
+   Navigator.pushAndRemoveUntil(context, MaterialPageRoute(builder: (context)=>NavigationPage(initialState: 0,)), (route) => false,);
   }
 }

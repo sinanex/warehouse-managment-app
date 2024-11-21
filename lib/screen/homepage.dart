@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
 import 'package:storeit/databases/functions/function.dart';
 import 'package:storeit/databases/model/userdata.dart';
-import 'package:storeit/screen/dashbord.dart';
+import 'package:storeit/screen/bottomNavigation.dart';
 import 'package:storeit/screen/filterPage.dart';
 import 'package:storeit/screen/history.dart';
 import 'package:storeit/screen/liststock.dart';
@@ -115,8 +115,8 @@ class _HomepageState extends State<Homepage> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => Dashbord()));
+                      Navigator.pushReplacement(context,
+                          MaterialPageRoute(builder: (context) => const NavigationPage(initialState: 2,)));
                     },
                     child: SizedBox(
                       width: 180,
@@ -205,7 +205,7 @@ class _HomepageState extends State<Homepage> {
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
+                            const Text(
                               "TOTAL STOCK",
                               style: TextStyle(
                                 color: Color.fromARGB(255, 0, 0, 0),
@@ -214,8 +214,8 @@ class _HomepageState extends State<Homepage> {
                               ),
                             ),
                             Text(
-                              "${a} Packages",
-                              style: TextStyle(
+                              "$a Packages",
+                              style: const TextStyle(
                                 color: Color.fromARGB(255, 0, 0, 0),
                                 fontWeight: FontWeight.w900,
                                 fontSize: 19,

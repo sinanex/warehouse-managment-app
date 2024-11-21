@@ -1,76 +1,136 @@
-
 import 'package:flutter/material.dart';
 import 'package:pie_chart/pie_chart.dart';
 import 'package:storeit/databases/functions/function.dart';
 
 class Dashbord extends StatefulWidget {
-
- Dashbord({super.key});
+  const Dashbord({super.key});
 
   @override
   State<Dashbord> createState() => _DashbordState();
 }
 
+TextEditingController dashbordDate = TextEditingController();
+List<String> dropdownItems = [
+  'Today',
+  'Last 7 day',
+  'Last 30 day',
+  'Complete',
+];
+String? _selectedItem;
+
 class _DashbordState extends State<Dashbord> {
-  final List<Color> colorList = [
-    Colors.blue,
-    Colors.orange,
-    Colors.green,  
-    Colors.red,
-    Colors.yellow,
-    Colors.purple
+  final String laptop = 'Laptop';
+  final String mobile = 'Mobile';
+  final String headset = 'Headphone';
+  final String tv = 'Television';
+  final String speaker = 'Speakers';
+  final String watch = 'Smart Watches';
 
-  ];
-
-   final laptop =  'Laptop';
-   final mobile = 'Mobile';
-   final headset =  'Headphone';
-   final  tv =  'Television';
-   final speaker = 'Speakers';
-   final watch =  'Smart Watches';
+  @override
+  void initState() {
+    super.initState();
+    getShippingData();
+  }
 
   @override
   Widget build(BuildContext context) {
-return Scaffold(
-  backgroundColor: Colors.white,
-  body: ValueListenableBuilder(valueListenable: stockmodelnotifer, builder: (context, value, child) {
-   final lap =  value.where((product)=>product.catogary == laptop);
-   final phone =  value.where((product)=>product.catogary == mobile);
-   final headphone =  value.where((product)=>product.catogary == headset);
-   final television =  value.where((product)=>product.catogary == tv);
-   final speak =  value.where((product)=>product.catogary == speaker);
-   final watchh =  value.where((product)=>product.catogary == watch);
-
-     final Map<String, double> dataMap = {
-    "Phone": phone.length.toDouble(),
-    "Laptop": lap.length.toDouble(),
-    "Headphone": headphone.length.toDouble(),
-    "Speakers": speak.length.toDouble(),
-    'smart watches': watchh.length.toDouble(),
-    'television': television.length.toDouble(),
-  };
-   return  PieChart(
-        key: const Key("pie_chart"), 
-        dataMap: dataMap,
-        colorList: colorList,
-        chartRadius: MediaQuery.of(context).size.width / 2.2,
-        legendOptions: const LegendOptions(
-          showLegendsInRow: false,
-          legendPosition: LegendPosition.right,
-          showLegends: true,
-          legendShape: BoxShape.circle,
-          legendTextStyle: TextStyle(
-            fontWeight: FontWeight.bold,
+    return Scaffold(
+      backgroundColor: Colors.white,
+      body: Column(
+        children: [
+          const SizedBox(height: 100),
+          Text(
+            "Sales",
+            style: style(),
           ),
-        ),
-        chartValuesOptions: const ChartValuesOptions(
-          showChartValuesInPercentage: true,
-          showChartValuesOutside: true,
-          decimalPlaces: 1,
-        ),
-      );
-  },),
-  
-);
+          const SizedBox(height: 50),
+          DropdownButton(
+            value: _selectedItem,
+            hint: const Text("Select Time Range"),
+            items: dropdownItems.map((value) {
+              return DropdownMenuItem(
+                value: value,
+                child: Text(value),
+              );
+            }).toList(),
+            onChanged: (value) {
+              setState(() {
+                _selectedItem = value;
+              });
+            },
+          ),
+          ValueListenableBuilder(
+            valueListenable: shippingmodelNotifeir,
+            builder: (context, value, child) {
+              final now = DateTime.now();
+
+              // Filter data based on the dropdown selection
+              final filteredData = value.where((data) {
+                final dataDate = data.date != null
+                    ? DateTime.tryParse(data.date!)
+                    : null;
+
+                if (dataDate == null) return false; // Ignore invalid dates
+
+                switch (_selectedItem) {
+                  case 'Today':
+                    return isSameDay(dataDate, now);
+                  case 'Last 7 day':
+                    return dataDate.isAfter(now.subtract(const Duration(days: 7)));
+                  case 'Last 30 day':
+                    return dataDate.isAfter(now.subtract(const Duration(days: 30)));
+                  case 'Complete':
+                  default:
+                    return true; // Show all data
+                }
+              }).toList();
+              final Map<String, double> dataMap = {
+                "Phone": filteredData
+                    .where((p) => p.catogary == mobile)
+                    .fold(0.0, (sum, p) => sum + (int.parse(p.quantity!))),
+                "Laptop": filteredData
+                    .where((p) => p.catogary == laptop)
+                    .fold(0.0, (sum, p) => sum + (int.parse(p.quantity!))),
+                "Headphone": filteredData
+                    .where((p) => p.catogary == headset)
+                    .fold(0.0, (sum, p) => sum + (int.parse(p.quantity!))),
+                "Speakers": filteredData
+                    .where((p) => p.catogary == speaker)
+                    .fold(0.0, (sum, p) => sum + (int.parse(p.catogary!))),
+                'Smart Watches': filteredData
+                    .where((p) => p.catogary == watch)
+                    .fold(0.0, (sum, p) => sum + (int.parse(p.quantity!))),
+                'Television': filteredData
+                    .where((p) => p.catogary == tv)
+                    .fold(0.0, (sum, p) => sum + (int.parse(p.quantity!))),
+              };
+
+              return Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: PieChart(
+                  dataMap: dataMap,
+                  chartValuesOptions: const ChartValuesOptions(
+                    showChartValueBackground: true,
+                    decimalPlaces: 0,
+                    showChartValuesOutside: true,
+                  ),
+                ),
+              );
+            },
+          ),
+        ],
+      ),
+    );
+  }
+  bool isSameDay(DateTime date1, DateTime date2) {
+    return date1.year == date2.year &&
+        date1.month == date2.month &&
+        date1.day == date2.day;
+  }
+  TextStyle style() {
+    return const TextStyle(
+      fontSize: 24,
+      fontWeight: FontWeight.bold,
+    );
   }
 }

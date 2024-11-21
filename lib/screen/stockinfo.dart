@@ -9,7 +9,7 @@ import 'package:storeit/screen/ship.dart';
 String? formattedDate = DateFormat('yyyy-MM-dd').format(DateTime.now());
 
 // ignore: must_be_immutable
-class StockDetails extends StatelessWidget {
+class StockDetails extends StatefulWidget {
   String? name;
   String? catogary;
   String? color;
@@ -33,6 +33,16 @@ class StockDetails extends StatelessWidget {
     required this.index,
   });
 
+  @override
+  State<StockDetails> createState() => _StockDetailsState();
+}
+
+class _StockDetailsState extends State<StockDetails> {
+  @override
+  void initState() {
+    super.initState();
+    getData();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -61,7 +71,7 @@ class StockDetails extends StatelessWidget {
                   width: 250,
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(20),
-                    child: Image.file(File(image!)),
+                    child: Image.file(File(widget.image!)),
                   ),
                 ),
               ),
@@ -69,7 +79,7 @@ class StockDetails extends StatelessWidget {
                 height: 20,
               ),
               Text(
-                "$name",
+                "${widget.name}",
                 style: const TextStyle(
                   fontWeight: FontWeight.w900,
                   fontSize: 28,
@@ -79,26 +89,26 @@ class StockDetails extends StatelessWidget {
                 height: 5,
               ),
               Text(
-                'Catogary : $catogary',
+                'Catogary : ${widget.catogary}',
                 style: const TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
                 ),
               ),
               Text(
-                "Color : $color",
+                "Color : ${widget.color}",
                 style:
                     const TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
               ),
               const SizedBox(
                 height: 40,
               ),
-              Text('$decs'),
+              Text('${widget.decs}'),
               const SizedBox(
                 height: 20,
               ),
               Text(
-                'Quantity : $quantity',
+                'Quantity : ${widget.quantity}',
                 style:
                     const TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
               ),
@@ -106,7 +116,7 @@ class StockDetails extends StatelessWidget {
                 height: 10,
               ),
               Text(
-                'Price : ₹$price',
+                'Price : ₹${widget.price}',
                 style:
                     const TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
               ),
@@ -114,7 +124,7 @@ class StockDetails extends StatelessWidget {
                 height: 10,
               ),
               Text(
-                "date : $date",
+                "date : ${widget.date}",
                 style:
                     const TextStyle(fontWeight: FontWeight.bold, fontSize: 19),
               ),
@@ -133,15 +143,15 @@ class StockDetails extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => Shppingpage(
-                                      pname: name,
-                                      image: image,
-                                      price: price,
-                                      catogary: catogary,
-                                      color: color,
-                                      date: date,
-                                      decs: decs,
-                                      index: index,
-                                      itemquantity: quantity,
+                                      pname: widget.name,
+                                      image: widget.image,
+                                      price: widget.price,
+                                      catogary: widget.catogary,
+                                      color: widget.color,
+                                      date: widget.date,
+                                      decs: widget.decs,
+                                      index: widget.index,
+                                      itemquantity: widget.quantity,
                                     )));
                       },
                       style: ElevatedButton.styleFrom(
@@ -166,15 +176,15 @@ class StockDetails extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => EditPage(
-                                    name: name,
-                                    color: color,
-                                    catogary: catogary,
-                                    date: date,
-                                    price: price,
-                                    decs: decs,
-                                    quantity: quantity,
-                                    index: index,
-                                    image: image)));
+                                    name: widget.name,
+                                    color: widget.color,
+                                    catogary: widget.catogary,
+                                    date: widget.date,
+                                    price: widget.price,
+                                    decs: widget.decs,
+                                    quantity: widget.quantity,
+                                    index: widget.index,
+                                    image: widget.image)));
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.black,
@@ -194,7 +204,7 @@ class StockDetails extends StatelessWidget {
                     height: 50,
                     child: ElevatedButton(
                       onPressed: () {
-                        deleteData(index);
+                        deleteData(widget.index);
                         Navigator.pop(context);
                       },
                       style: ElevatedButton.styleFrom(
