@@ -6,7 +6,6 @@ import 'package:image_picker/image_picker.dart';
 import 'package:storeit/databases/functions/function.dart';
 import 'package:storeit/databases/model/model.dart';
 import 'package:storeit/screen/bottomNavigation.dart';
-import 'package:storeit/screen/liststock.dart';
 import 'package:storeit/widgets/widget.dart';
 
 class EditPage extends StatefulWidget {
